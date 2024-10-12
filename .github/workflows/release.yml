@@ -24,6 +24,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Get release tag
+      id: get_tag
+      run: echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -36,13 +40,13 @@ jobs:
         pip install -r requirements-win.txt
 
     - name: Run build script
-      run: .\build-win.bat
+      run: .\build-win.bat ${{ matrix.os }}_${{ matrix.arch }}_${{ env.tag }}
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: Thermometer-MI.exe
-        path: .\dist\Thermometer-MI.exe
+        path: .\dist\Thermometer-MI_${{ matrix.os }}_${{ matrix.arch }}_${{ env.tag }}.exe
 
   release:
     needs: build
