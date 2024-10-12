@@ -1,0 +1,1 @@
+pyinstaller main.py -n "Therometer-MI" --console --onefile
