@@ -45,7 +45,7 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Thermometer-MI.exe
+        name: Thermometer-MI_${{ matrix.os }}_${{ matrix.arch }}_${{ env.tag }}.exe
         path: .\dist\Thermometer-MI_${{ matrix.os }}_${{ matrix.arch }}_${{ env.tag }}.exe
 
   release:
