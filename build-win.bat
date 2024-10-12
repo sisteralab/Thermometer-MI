@@ -7,4 +7,4 @@ if "%1"=="" (
     set "Tag=%1"
 )
 
-pyinstaller main.py -n "Therometer-MI_%Tag%" --console --onefile
+pyinstaller main.py -n "Thermometer-MI_%Tag%" --console --onefile
